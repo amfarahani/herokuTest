@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from werkzeug.debug import DebuggedApplication
 import numpy as np
 import pickle
 import joblib
@@ -23,5 +24,14 @@ def predict():
     pred = model.predict(np.array([[Sepal_Length, Sepal_Width, Petak_Length, Petal_Width ]]))
     print(pred)
     return render_template('index.html', predict=str(pred))
+
+def create_app():
+    # Insert whatever else you do in your Flask app factory.
+
+    if app.debug:
+        app.wsgi_app = DebuggedApplication(app.wsgi_app, evalex=True)
+
+    return app
+
 if __name__ == '__main__':
     app.run(debug=True)
