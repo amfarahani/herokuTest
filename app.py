@@ -1,13 +1,12 @@
 from flask import Flask, render_template, request
-from werkzeug.debug import DebuggedApplication
 import numpy as np
 import pickle
 import joblib
 app = Flask(__name__)
 filename = 'file_iris.pkl'
-model = pickle.load(open(filename, 'rb'))
-#model = joblib.load(filename)
-#model = joblib.load('filename.pkl')
+#model = pickle.load(open(filename, 'rb'))
+model = joblib.load(filename)
+model = joblib.load('filename.pkl')
 @app.route('/')
 def index():
     
@@ -25,13 +24,6 @@ def predict():
     print(pred)
     return render_template('index.html', predict=str(pred))
 
-def create_app():
-    # Insert whatever else you do in your Flask app factory.
-
-    if app.debug:
-        app.wsgi_app = DebuggedApplication(app.wsgi_app, evalex=True)
-
-    return app
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
