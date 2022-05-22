@@ -6,7 +6,7 @@ app = Flask(__name__)
 filename = 'file_iris.pkl'
 #model = pickle.load(open(filename, 'rb'))
 model = joblib.load(filename)
-model = joblib.load('filename.pkl')
+#model = joblib.load(filename)
 @app.route('/')
 def index():
     
