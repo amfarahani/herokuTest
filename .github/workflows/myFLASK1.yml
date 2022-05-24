@@ -23,4 +23,10 @@ jobs:
           pip install -r requirements.txt
       - name: run_program
         run: python app.py
+      - name: Deploy to Heroku
+        env:
+          HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
+        run: |
+          git remote add heroku https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$ana680-1.git
+          git push heroku main
      
