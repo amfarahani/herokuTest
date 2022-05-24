@@ -8,8 +8,7 @@ filename = 'file_iris.pkl'
 model = joblib.load(filename)
 #model = joblib.load(filename)
 @app.route('/')
-def index():
-    
+def index(): 
     return render_template('index.html')
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -26,4 +25,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run
